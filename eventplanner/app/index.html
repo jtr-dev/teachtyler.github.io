@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta class="masterpage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AngularJS Meetup Event Planner</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+
+    <link href="styles/datepicker.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <!--Libraries-->
+
+    <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js"></script>
+    <script src="scripts/bootstrap-datepicker.js"></script>
+
+
+</head>
+<body>
+   <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <div class="navbar-brand">
+                          <h4 >Meetup Event Planner</h4>
+                      </div>
+
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- <div class="navbar-brand">
+                <h4 >Meetup Event Planner</h4>
+            </div> -->
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-header">
+
+
+                    <li><a href="#/events">Events</a></li>
+                    <li><a href="#/event">Create New</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right ">
+                    <li><a href="#/register">Register</a></li>
+                    <li><a href="#/login">Login</a></li>
+
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+   </header>
+
+
+
+    <div class="jumbotron">
+
+        <div class="container">
+            <div class="col-md-12">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-view></div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.angularjs.org/1.2.20/angular.js"></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.2.13/angular-cookies.js"></script>
+
+    <!--Routing -->
+    <script src="scripts/app.js"></script>
+    <!--Services-->
+    <script src="scripts/services/authentication.service.js"></script>
+    <script src="scripts/services/flash.service.js"></script>
+    <script src="scripts/services/user.service.js"></script>
+    <script src="scripts/services/event.service.js"></script>
+
+    <!--Fake(cached) Storage / place with Firebase-->
+    <!--This cached storage is client-side only and will disappear upon leaving page. -->
+    <script src="scripts/services/user.service.local-storage.js"></script>
+    <script src="scripts/services/event.service.local-storage.js"></script>
+    <!--Controllers-->
+    <script src="scripts/controllers/home.controller.js"></script>
+    <script src="scripts/controllers/login.controller.js"></script>
+    <script src="scripts/controllers/register.controller.js"></script>
+    <script src="scripts/controllers/event.controller.js"></script>
+    <script src="scripts/controllers/events.controller.js"></script>
+
+
+
+</body>
+</html>
