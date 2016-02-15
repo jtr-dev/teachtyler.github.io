@@ -1,61 +1,74 @@
-﻿<div class="col-md-8 col-md-offset-3">
-    <h2>Register</h2>
+<div class="col-md-8 col-md-offset-2">
+  <h2>Register</h2>
 
-    <form name="form" ng-submit="vm.register()" role="form" id="form">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-                    <label for="username">First name</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control" ng-model="vm.user.firstName" required placeholder="John"/>
-                    <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-                    <label for="username">Last name</label>
-                    <input type="text" name="lastName" id="Text1" class="form-control" ng-model="vm.user.lastName" required placeholder="Doe" />
-                    <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
-                </div>
-            </div>
+  <form name="form" ng-submit="vm.register()" role="form" id="form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+          <label for="firstName">First name</label>
+          <input type="text" name="firstName" id="firstName" class="form-control" ng-model="vm.user.firstName" autofocus required placeholder="John" />
+          <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required placeholder="example@email.com"/>
-            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+          <label for="lastName">Last name</label>
+          <input type="text" name="lastName" id="Text1" class="form-control" ng-model="vm.user.lastName" required placeholder="Doe" />
+          <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-           <label for="username">Username</label>
-           <input type="text" name="username" id="username" class="form-control" ng-model="vm.user.username" required placeholder="example@email.com or johndoe1989"/>
-           <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
-       </div>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+      <label for="email">Email address</label>
+      <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required placeholder="example@email.com" />
+      <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+    </div>
+
+
+    <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" class="form-control" ng-model="vm.user.username" required placeholder="example@email.com or johndoe1989" />
+      <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+    </div>
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" ng-change="analyze(password)" ng-model="vm.user.password" required ng-pattern="myRegex" />
+          <span ng-show="form.password.$dirty && form.password.$error.pattern" class="help-block">At least 8 characters, 1 Uppercase, lowercase and number.</span>
+          <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error': form.confirmPassword.$dirty && form.confirmPassword.$error.required }" ng-style="passwordStrength">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" required pw-check="password" />
+          <span ng-show="form.confirmPassword.$dirty && form.confirmPassword.$error.pwmatch" class="help-block">Please confirm password</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
         <div class="form-group" ng-class="{ 'has-error': form.location.$dirty && form.location.$error.required }">
-            <label for="location"> Location</label>
-            <input type="text" name="location" id="location" class="form-control" ng-model="vm.user.location" placeholder="Zip Code"/>
-            <span ng-show="form.location.$dirty && form.location.$error.required" class="help-block"></span>
+          <label for="location"> Location</label>
+          <input type="text" name="location" id="location" class="form-control" ng-model="vm.user.location" placeholder="Zip Code" />
+          <span ng-show="form.location.$dirty && form.location.$error.required" class="help-block"></span>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" ng-change="analyze(password)" ng-model="vm.user.password" required ng-pattern="myRegex" />
-                    <span ng-show="form.password.$dirty && form.password.$error.pattern" class="help-block">At least 8 characters, 1 Uppercase, lowercase and number.</span>
-                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group" ng-class="{ 'has-error': form.confirmPassword.$dirty && form.confirmPassword.$error.required }" ng-style="passwordStrength">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" required pw-check="password" />
-                    <span ng-show="form.confirmPassword.$dirty && form.confirmPassword.$error.pwmatch" class="help-block">Please confirm password</span>
-                </div>
-
-            </div>
-        </div>
-            <div class="form-actions">
-                <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
-                <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                <a href="#/login" class="btn btn-link">Cancel</a>
-            </div>
-</form>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
+      <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+      <a href="#/login" class="btn btn-link">Cancel</a>
+    </div>
+  </form>
 </div>
